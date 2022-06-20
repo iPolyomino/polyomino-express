@@ -1,0 +1,22 @@
+{
+  "name": "polyomino-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/iPolyomino/polyomino-express.git"
+  },
+  "author": "Hagi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iPolyomino/polyomino-express/issues"
+  },
+  "homepage": "https://github.com/iPolyomino/polyomino-express#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
