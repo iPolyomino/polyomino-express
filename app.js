@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const profile = require("./profile.json");
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json(profile);
 });
 
 app.listen(port, () => {

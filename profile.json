@@ -1,0 +1,40 @@
+{
+  "name": "Hagi",
+  "website": "https://polyomino.jp/",
+  "job": "software engineer",
+  "profile": "エンジニア。Web にまつわる技術全般に興味を持っています。最も得意な技術は、Webフロントエンドです。趣味は、カメラ、旅行、アマチュア無線など。",
+  "blog": "https://polyomino.jp/blog",
+  "license": [
+    "大型自動車運転免許",
+    "乙種第 1,2,3,4,5,6 類危険物取扱者",
+    "第二種電気工事士",
+    "第三級アマチュア無線技士"
+  ],
+  "SNS": {
+    "Twitter": "https://twitter.com/iPolyomino",
+    "GitHub": "https://github.com/iPolyomino",
+    "Mastodon": "https://mstdn.jp/@iPolyomino"
+  },
+  "production": [
+    {
+      "name": "ちょっとちゃっと",
+      "url": "https://chat.polyomino.jp/",
+      "description": "ちょっとだけチャットができるアプリケーションです。"
+    },
+    {
+      "name": "shikkui",
+      "url": "https://shikkui.kasgai.com/",
+      "description": "ブロックの操作でウェブサイトを作成することができるというアプリケーションです。"
+    },
+    {
+      "name": "awacha.com",
+      "url": "https://awacha.com/",
+      "description": "curl によってメモを作成、取得、削除できるウェブアプリケーションです。"
+    }
+  ],
+  "tools": {
+    "devices": "ThinkPad",
+    "browser": "Firefox",
+    "search_engine": "DuckDuckGo"
+  }
+}
