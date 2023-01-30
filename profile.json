@@ -10,10 +10,10 @@
     "第二種電気工事士",
     "第三級アマチュア無線技士"
   ],
-  "SNS": {
-    "Twitter": "https://twitter.com/iPolyomino",
-    "GitHub": "https://github.com/iPolyomino",
-    "Mastodon": "https://mstdn.jp/@iPolyomino"
+  "sns": {
+    "twitter": "https://twitter.com/iPolyomino",
+    "github": "https://github.com/iPolyomino",
+    "mastodon": "https://mstdn.jp/@iPolyomino"
   },
   "production": [
     {
@@ -32,9 +32,25 @@
       "description": "curl によってメモを作成、取得、削除できるウェブアプリケーションです。"
     }
   ],
+  "owned_domain": [
+    "polyomino.jp",
+    "polyomino.app",
+    "awacha.com",
+    "kasgai.com",
+    "バイトヒーロー.com"
+  ],
   "tools": {
-    "devices": "ThinkPad",
-    "browser": "Firefox",
-    "search_engine": "DuckDuckGo"
+    "hardware": {
+      "laptop": "ThinkPad T480s",
+      "keyboard": "Happy Hacking Keyboard Professional2 (PD-KB400BN)",
+      "display": "EIZO FlexScan (EV2785-BK)"
+    },
+    "software": {
+      "operating_system": "Debian",
+      "window_manager": "i3",
+      "browser": "Firefox",
+      "search_engine": "DuckDuckGo",
+      "editor": "neovim"
+    }
   }
 }
