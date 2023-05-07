@@ -9,56 +9,70 @@ app.get("/", (req, res) => {
   res.json(profile);
 });
 
-app.post("/hit-and-blow/:digits", (req, res) => {
-  const questions = req.body.questions;
-  const digits = parseInt(req.params.digits);
+const hitblow = [
+  { hit: 0, blow: 0 },
+  { hit: 0, blow: 1 },
+  { hit: 0, blow: 2 },
+  { hit: 0, blow: 3 },
+  { hit: 1, blow: 0 },
+  { hit: 1, blow: 1 },
+  { hit: 1, blow: 2 },
+  { hit: 2, blow: 0 },
+  { hit: 2, blow: 1 },
+  { hit: 3, blow: 0 },
+];
 
-  const permutations = (nums) => {
-    const result = [];
-    const permute = (queue = []) => {
-      if (queue.length === digits) {
-        result.push(queue);
-      } else {
-        for (let num of nums) {
-          if (!queue.includes(num)) {
-            permute(queue.concat(num));
-          }
+const Permutations = (nums) => {
+  const result = [];
+  const permute = (queue = []) => {
+    if (queue.length === 3) {
+      result.push(queue);
+    } else {
+      for (let num of nums) {
+        if (!queue.includes(num)) {
+          permute(queue.concat(num));
         }
       }
-    };
-    permute();
-    return result;
+    }
   };
+  permute();
+  return result;
+};
 
-  const hitCounter = (a, b) => {
-    ans = 0;
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] === b[i]) {
+const HitCounter = (a, b) => {
+  ans = 0;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] === b[i]) {
+      ans++;
+    }
+  }
+  return ans;
+};
+
+const BlowCounter = (a, b) => {
+  ans = 0;
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < b.length; j++) {
+      if (i === j) continue;
+      if (a[i] === b[j]) {
         ans++;
       }
     }
-    return ans;
-  };
+  }
+  return ans;
+};
 
-  const blowCounter = (a, b) => {
-    ans = 0;
-    for (let i = 0; i < a.length; i++) {
-      for (let j = 0; j < b.length; j++) {
-        if (i === j) continue;
-        if (a[i] === b[j]) {
-          ans++;
-        }
-      }
-    }
-    return ans;
-  };
+const Answer = Permutations([...Array(10).keys()]);
 
-  let answer = permutations([...Array(10).keys()]);
+app.post("/hit-and-blow", (req, res) => {
+  const questions = req.body.questions;
+
+  let answer = Answer;
   for (let question of questions) {
     const challenge = (cNum, { hit, blow }) => {
       return answer
-        .filter((ans) => hitCounter(ans, cNum) === hit)
-        .filter((ans) => blowCounter(ans, cNum) === blow);
+        .filter((ans) => HitCounter(ans, cNum) === hit)
+        .filter((ans) => BlowCounter(ans, cNum) === blow);
     };
     answer = challenge(
       question.number.split("").map((e) => parseInt(e)),
@@ -67,6 +81,34 @@ app.post("/hit-and-blow/:digits", (req, res) => {
   }
 
   res.json(answer.map((e) => e.join("")));
+});
+
+app.post("/hit-and-blow/next", (req, res) => {
+  const questions = req.body.questions;
+  const next = req.body.next.split("").map((e) => parseInt(e));
+
+  let answer = Answer;
+  for (let question of questions) {
+    const challenge = (cNum, { hit, blow }) => {
+      return answer
+        .filter((ans) => HitCounter(ans, cNum) === hit)
+        .filter((ans) => BlowCounter(ans, cNum) === blow);
+    };
+    answer = challenge(
+      question.number.split("").map((e) => parseInt(e)),
+      question.result
+    );
+  }
+
+  let result = {};
+  for (let hb of hitblow) {
+    let hbResult = answer
+      .filter((hbr) => HitCounter(hbr, next) === hb.hit)
+      .filter((hbr) => BlowCounter(hbr, next) === hb.blow);
+    result[`${hb.hit}hit${hb.blow}blow`] = hbResult.length;
+  }
+
+  res.json(result);
 });
 
 app.listen(port, () => {
